@@ -1,0 +1,129 @@
+body {
+
+    margin: 0;
+    padding: 0;
+}
+
+
+nav {
+    background-color: rgb(244, 242, 242);
+    padding:20px;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    
+}
+a {
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+}
+.login-icon{
+    text-align: right;
+    float: right;
+}
+.popup-content {
+    display: none;
+    background-color: #555;
+    color: white;
+    position: absolute;
+    top: 50px; /* Adjust the position to be below the link */
+    width:80px;
+    border-radius: 4px;
+    z-index: 1;
+
+
+    
+}
+ol {
+    padding-left: 10px;
+}
+/* Show the pop-up when hovering over the link */
+nav a:hover .popup-content {
+    display: block;
+}
+
+.welcome {
+    background-image: linear-gradient(rgba(252, 251, 251, 0.975), rgb(251, 249, 249)),
+    url(HomeBackgroundImage.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-color: white;
+    background-blend-mode: multiply;
+    padding: 50px;
+    
+    
+}
+
+.welcome h1 {
+    width: 430px;
+    margin-top: 50px;
+    font-size: xx-large;
+}
+
+.welcome p {
+    font-style: italic;
+    font-weight: bold;
+}
+.welcome h3 {
+    width: 250px;
+}
+
+.welcome button {
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(88, 88, 244);
+    color: #fff;
+    font-weight: bold;
+    margin-top: 50px;
+    cursor: pointer;
+}
+.welcome button:hover {
+    background-color: #fff ;
+    color: rgb(88, 88, 244);
+    font-weight: bold;
+    transition-duration: 0.8s;
+
+}
+.feedback-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+.feedback-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  
+  .feedback-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .feedback-container img {
+    border: none;
+    border-radius: 10px;
+    height: 200px;
+    width: fit-content;
+  }
+  
+footer {
+    background-color: rgb(254, 239, 239);
+    height: 230px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 20px;
+}
+footer a {
+    text-decoration: none;
+}

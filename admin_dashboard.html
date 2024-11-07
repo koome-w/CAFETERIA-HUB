@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin_dashboard.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <p>Welcome, <span id="adminName">Admin</span></p>
+            <button onclick="logout()">Logout</button>
+        </header>
+
+        <nav>
+            <ul>
+                <li onclick="showSection('dashboard')">Dashboard Overview</li>
+                <li onclick="showSection('menuManagement')">Menu Management</li>
+                <li onclick="showSection('orderManagement')">Order Management</li>
+                <li onclick="showSection('userManagement')">User Management</li>
+                <li onclick="showSection('feedbackManagement')">Feedback Management</li>
+                <li onclick="showSection('paymentManagement')">Payment Management</li>
+                <li onclick="showSection('reports')">Reports/Analytics</li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Dashboard Overview -->
+            <section id="dashboard" class="section visible">
+                <h2>Dashboard Overview</h2>
+                <div class="stats">
+                    <div>Total Orders Today: <span id="totalOrders">0</span></div>
+                    <div>Total Revenue Today: <span id="totalRevenue">0</span> KES</div>
+                    <div>Total Users: <span id="totalUsers">0</span></div>
+                    <div>Total Feedback Received: <span id="totalFeedback">0</span></div>
+                </div>
+            </section>
+
+            <!-- Menu Management -->
+            <section id="menuManagement" class="section hidden">
+                <h2>Menu Management</h2>
+                <input type="text" id="menuItemName" placeholder="Item Name" />
+                <input type="number" id="menuItemPrice" placeholder="Price" />
+                <textarea id="menuItemDescription" placeholder="Description"></textarea>
+                <button onclick="addMenuItem()">Add Menu Item</button>
+                <h3>Menu Items</h3>
+                <ul id="menuList"></ul>
+            </section>
+
+            <!-- Order Management -->
+            <section id="orderManagement" class="section hidden">
+                <h2>Order Management</h2>
+                <input type="text" id="orderUser" placeholder="User Name" />
+                <input type="number" id="orderAmount" placeholder="Order Amount (KES)" />
+                <button onclick="addOrder()">Add Order</button>
+                <h3>Orders</h3>
+                <ul id="orderList"></ul>
+            </section>
+
+            <!-- User Management -->
+            <section id="userManagement" class="section hidden">
+                <h2>User Management</h2>
+                <input type="text" id="userName" placeholder="User Name" />
+                <input type="email" id="userEmail" placeholder="User Email" />
+                <button onclick="addUser()">Add User</button>
+                <h3>Users</h3>
+                <ul id="userList"></ul>
+            </section>
+
+            <!-- Feedback Management -->
+            <section id="feedbackManagement" class="section hidden">
+                <h2>Feedback Management</h2>
+                <input type="text" id="feedbackUser" placeholder="User Name" />
+                <textarea id="feedbackMessage" placeholder="Feedback Message"></textarea>
+                <button onclick="addFeedback()">Submit Feedback</button>
+                <h3>Feedback List</h3>
+                <ul id="feedbackList"></ul>
+            </section>
+
+            <!-- Payment Management -->
+            <section id="paymentManagement" class="section hidden">
+                <h2>Payment Management</h2>
+                <input type="text" id="paymentOrderUser" placeholder="User Name" />
+                <input type="number" id="paymentAmount" placeholder="Payment Amount (KES)" />
+                <button onclick="addPayment()">Add Payment</button>
+                <h3>Payments</h3>
+                <ul id="paymentList"></ul>
+            </section>
+
+            <!-- Reports/Analytics -->
+            <section id="reports" class="section hidden">
+                <h2>Reports/Analytics</h2>
+                <button onclick="generateReport()">Generate Report</button>
+                <h3>Report</h3>
+                <pre id="reportOutput"></pre>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin_dashboard_script.js"></script> <!-- Link to external JavaScript -->
+</body>
+</html>

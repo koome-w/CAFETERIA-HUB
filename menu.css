@@ -1,0 +1,157 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.hamburger-menu {
+  font-size: 2em;
+  padding: 10px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: gray;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  transform: translateX(-100%); /* Hide by default */
+  transition: transform 0.3s ease;
+}
+
+.side-menu a {
+  padding: 15px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+}
+
+.side-menu a:hover {
+  background-color: #575757;
+}
+
+/* Show the side menu when .open class is added */
+.side-menu.open {
+  transform: translateX(0);
+}
+
+header {
+    background-color: transparent;
+    padding: 8px;
+    text-align: center;
+
+}
+
+.navbar p {
+  font-style: italic;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px; 
+    row-gap: 40px;
+    margin-bottom: 20px;
+    padding: 20px;
+    height: auto;
+
+}
+
+
+.special {
+  height: 120px;
+  margin-left: 20px;
+}
+
+.specials 
+ {
+   background-color: #eddfdf;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+}
+.specials .was {
+  text-decoration: line-through;
+  color: red;
+} 
+
+.breakfast {
+    background-color: #eddfdf;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+}
+.lunch {
+    background-color: #eddfdf;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+}
+.snacks {
+    background-color: #eddfdf;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+}
+/* Quantity Control */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .quantity-control button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .quantity-control input {
+    width: 50px;
+    text-align: center;
+    margin: 0 5px;
+  }
+  
+  .order-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .order-btn:hover {
+    background-color: #218838;
+  }
+
+footer {
+    background-color: rgb(214, 203, 203);
+    height: 230px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 20px;
+}
+footer a {
+    text-decoration: none;
+}

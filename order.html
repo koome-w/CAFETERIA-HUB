@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Summary & Payment</title>
+  <link rel="stylesheet" href="order.css">
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="hamburger-menu" id="menuToggle">
+        ☰ <!--Symbol for hamburger icon-->
+      </div>
+      <nav class="side-menu" id="sideMenu">
+        <a href="menu.html">Menu Page</a>
+        <a href="order.html">Order and Pay</a>
+        <a href="feedback.html">Give Feedback</a>
+      </nav>
+    </div>
+  </header>
+
+<div class="container">
+  <!-- Order Summary Section -->
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price(KES)</th>
+          <th>Subtotal(KES)</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="orderTableBody">
+        <!-- Items will be dynamically generated here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Payment Summary Section -->
+  <div class="payment-summary">
+    <h3>Payment Summary</h3>
+    <p>Total: <span id="totalPrice">0.00</span> KES</p>
+    <button id="payNowBtn" onclick="payNow()">Pay Now</button>
+  </div>
+</div>
+
+<script src="order_script.js"></script>
+
+</body>
+</html>
