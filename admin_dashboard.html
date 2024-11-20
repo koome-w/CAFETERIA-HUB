@@ -103,7 +103,25 @@
                 <h2>Reports/Analytics</h2>
                 <button onclick="generateReport()">Generate Report</button>
                 <h3>Report</h3>
+                <div id="reportContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Total Amount</th>
+                            <th>Order Date</th>
+                            <th>Items</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTableBody">
+                        <!-- Report rows will be dynamically generated here -->
+                    </tbody>
+                </table>
+                </div>
+                <!--                
                 <pre id="reportOutput"></pre>
+                -->
             </section>
             <button onclick="logout()">Logout</button>
         </main>

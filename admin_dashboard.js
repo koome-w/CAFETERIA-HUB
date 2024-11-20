@@ -209,6 +209,7 @@ function clearPaymentInputFields() {
 
 // Generate report
 function generateReport() {
+    /*
     let report = "Cafeteria Hub Report\n\n";
     report += "Total Orders: " + orders.length + "\n";
     report += "Total Revenue: " + calculateTotalRevenue() + " KES\n";
@@ -219,6 +220,7 @@ function generateReport() {
     
     orders.forEach((order, index) => {
         report += `${index + 1}. User: ${order.user}, Amount: ${order.totalAmount} KES\n`;
+    
     });
 
     report += "\nPayment Details:\n";
@@ -227,7 +229,54 @@ function generateReport() {
     });
 
     document.getElementById('reportOutput').innerText = report;
-}
+    */
+
+        fetch('generate_report.php')
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    const orders = data.orders;
+                    let report = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>User</th>
+                                    <th>Price (KES)</th>
+                                    <th>Total Amount (KES)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+    
+                    orders.forEach((item) => {
+                        const price = parseFloat(item.price) || 0; // Fallback to 0 if undefined
+                        const totalAmount = parseFloat(item.total_amount) || 0; // Fallback to 0
+    
+                        report += `
+                            <tr>
+                                <td>${item.order_id}</td>
+                                <td>${item.username}</td>
+                                <td>${price.toFixed(2)} KES</td>
+                                <td>${totalAmount.toFixed(2)} KES</td>
+                            </tr>
+                        `;
+                    });
+    
+                    report += `
+                            </tbody>
+                        </table>
+                    `;
+    
+                    document.getElementById('reportContainer').innerHTML = report;
+                } else {
+                    alert('Failed to fetch report.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching report:', error);
+            });
+    }
 
 // Initialize dashboard on page load
 window.onload = function() {

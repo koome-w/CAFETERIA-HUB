@@ -141,8 +141,55 @@ function removeItem(index) {
 // Function to handle payment (example placeholder)
 function payNow() {
     const totalAmount = document.getElementById("totalPrice").textContent;
-    alert(`Initiating payment of ${totalAmount} KES...`);
-    // Add payment integration code here as needed
+    
+    // Example MPESA API integration code (pseudocode)
+    alert(`Initiating payment of ${totalAmount} KES using MPESA API...`);
+
+    //Here, you would add code to initiate a payment request using MPESA API.
+    // It typically involves sending the total amount, user phone number, and other required data to the MPESA API.
+    // Example pseudocode:
+    // fetch("MPESA_API_URL", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     amount: totalAmount,
+    //     phoneNumber: "userPhoneNumber",
+    //     // other necessary data
+    //   }),
+    // }).then(response => response.json())
+    //   .then(data => {
+    //     if (data.success) {
+    //       alert("Payment successful!");
+    //     } else {
+    //       alert("Payment failed, please try again.");
+    //     }
+    //   }).catch(error => console.error("Error:", error));
+
+    
+    // Collect the data to send to the backend
+    const orderData = {
+        user_id: 1, // Replace with the logged-in user's ID
+        totalAmount: parseFloat(totalAmount),
+        items: orderItems, // Include all ordered items
+    };
+
+    // Send the data to the backend
+    fetch('store_order.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Order placed successfully!');
+            localStorage.removeItem('orderItems'); // Clear the cart
+            window.location.reload(); // Refresh the page
+        } else {
+            alert('Failed to place the order: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 // Initial rendering of the order summary when the page loads
