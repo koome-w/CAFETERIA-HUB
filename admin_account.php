@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: user_login.html'); // Redirect to login if not logged in
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: admin_login.html'); // Redirect to login if not logged in
     exit;
 }
 ?>
@@ -15,15 +15,7 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="my_account.css"> <!-- Add your CSS file -->
 </head>
 <body>
-    <!--
-    <div class="profile-container">
-        <h2>My Account</h2>
-        <p><strong>Username:</strong> <?php echo $_SESSION['username']; ?></p>
-        <p><strong>Email:</strong> <?php echo $_SESSION['email']; ?></p>
-        <a href="user_logout.php">Logout</a>
-    </div>
-    -->
-
+   
     <div class="profile-container">
         <h2>My Account</h2>
         <p><strong>Username:</strong> 
