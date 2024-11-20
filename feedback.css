@@ -50,10 +50,12 @@ body {
 
 header {
   height: 100px;
-  background-color: transparent;
+  background-color: rgb(223, 220, 220);
   padding: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   text-align: center;
+  width: 100%;
+
 }
 
 header p{

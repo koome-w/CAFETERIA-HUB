@@ -46,11 +46,18 @@ body {
 }
 
 header {
-    background-color: transparent;
+    background-color: rgb(223, 219, 219);
     padding: 8px;
     text-align: center;
+    margin-bottom: 20px;
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 100px;
+    width: 100%;
+    position: fixed;
 
 }
+
+
 
 .navbar p {
   font-style: italic;
@@ -71,6 +78,7 @@ header {
 .special {
   height: 120px;
   margin-left: 20px;
+  margin-top: 150px;
 }
 
 .specials 

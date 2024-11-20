@@ -15,6 +15,7 @@
           ☰ <!--Symbol for hamburger icon-->
         </div>
         <nav class="side-menu" id="sideMenu">
+          <a href="home.html">Home Page</a>
           <a href="menu.html">Menu Page</a>
           <a href="order.html">Order and Pay</a>
           <a href="feedback.html">Give Feedback</a>
@@ -22,11 +23,16 @@
       </div>
     </header>
 
+  
     <!--The foods on offer-->
     <img class="special" src="discount.webp" alt="Discount" >
     <h3> Enjoy upto 20% on Our Specials!!!</h3>
-    <h2>Specials'</h2>
+    <h1>Specials'</h1>
       <div class="grid-container">
+
+        <?php
+          include 'fetch_menu.php';
+        ?>     
 
         <div class="specials" data-id="1" data-name="Burger" data-price="200">
           <h3>Burger</h3>
@@ -147,7 +153,7 @@
       <div class="grid-container">
 
         <div class="breakfast" data-id="9" data-name="Continental Breakfast" data-price="1,100">
-          <h3></h3>
+          <h3>Continental Breakfast</h3>
           <p>Price: Ksh. 1,100</p>
           <div class="quantity-control">
             <button class="decrement" onclick="decrement('continental-qty')">-</button>
@@ -184,109 +190,68 @@
           class="order-btn">Order Now</button>
         </div>
 
-        <div class="breakfast">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
+        <div class="breakfast" data-id="12" data-name="Mandazi" data-price="10">
+            <h3>Mandazi</h3>
+            <p><b>Allergen Advice:</b> Contains milk!</p>
+            <p>Price: Ksh. 10</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('mandazi-qty')">-</button>
+              <input type="number" id="mandazi-qty" value="0" min="0">
+              <button class="increment" onclick="increment('mandazi-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('12', 'Mandazi' , 10)"
+          class="order-btn">Order Now</button>
         </div>
 
-        <div class="breakfast">
-          <h3>Burger</h3>
-          <p>Price: Ksh. 200</p>
+        <div class="breakfast" data-id="13" data-name="Donghurt" data-price="40">
+          <h3>Donghurt</h3>
+          <p>Price: Ksh. 40</p>
           <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
+            <button class="decrement" onclick="decrement('donghurt-qty')">-</button>
+            <input type="number" id="donghurt-qty" value="0" min="0">
+            <button class="increment" onclick="increment('donghurt-qty')">+</button>
           </div>
-          <button class="order-btn">Order Now</button>
+          <button onclick="addToOrder('13', 'Donghurt' , 40)"
+          class="order-btn">Order Now</button>
         </div>
 
-        <div class="breakfast">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
+        <div class="breakfast" data-id="14" data-name="Black Coffee" data-price="80">
+            <h3>Black Coffee</h3>
+            <p><b>Allergen Advice:</b> Contains caffein!</p>
+            <p>Price: Ksh. 80</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('bcoffee-qty')">-</button>
+              <input type="number" id="bcoffee-qty" value="0" min="0">
+              <button class="increment" onclick="increment('bcoffee-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('14', 'Black Coffee' , 80)"
+          class="order-btn">Order Now</button>
         </div>
 
-        <div class="breakfast">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
+        <div class="breakfast" data-id="15" data-name="White Coffee" data-price="100">
+          <h3>White Coffee</h3>
+          <p><b>Allergen Advice:</b> Contains milk and caffein!</p>
+          <p>Price: Ksh. 100</p>
           <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
+            <button class="decrement" onclick="decrement('wcoffee-qty')">-</button>
+            <input type="number" id="wcoffee-qty" value="0" min="0">
+            <button class="increment" onclick="increment('wcoffee-qty')">+</button>
           </div>
-          <button class="order-btn">Order Now</button></div>
-
-        <div class="breakfast">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
+          <button onclick="addToOrder('15', 'White Coffee' , 100)"
+          class="order-btn">Order Now</button>
         </div>
 
-        <div class="breakfast">
-          <h3>Burger</h3>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="breakfast">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
+        <div class="breakfast" data-id="16" data-name="White Tea" data-price="120">
+            <h3>White Tea</h3>
+            <p><b>Allergen Advice:</b> Contains milk and caffein!</p>
+            <p>Price: Ksh. 120</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('wtea-qty')">-</button>
+              <input type="number" id="wtea-qty" value="0" min="0">
+              <button class="increment" onclick="increment('wtea-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="breakfast">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="breakfast">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('16', 'White Tea' , 120)"
+          class="order-btn">Order Now</button>
         </div>
       </div>
 
@@ -294,242 +259,107 @@
       <h2>Lunch</h2>
       <div class="grid-container">
 
-        <div class="lunch">
-          <h3>Burger</h3>
-          <p>Price: Ksh. 200</p>
+        <div class="lunch" data-id="17" data-name="Rice & Beaf" data-price="240">
+          <h3>Rice & Beaf</h3>
+          <p>Price: Ksh. 240</p>
           <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
+            <button class="decrement" onclick="decrement('rbeaf-qty')">-</button>
+            <input type="number" id="rbeaf-qty" value="0" min="0">
+            <button class="increment" onclick="increment('rbeaf-qty')">+</button>
           </div>
-          <button class="order-btn">Order Now</button>
+          <button onclick="addToOrder('17', 'Rice & Beaf' , 240)"
+          class="order-btn">Order Now</button>
       </div>
 
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
+      <div class="lunch" data-id="18" data-name="Rice & Beans" data-price="140">
+          <h3>Rice & Beans</h3>
+          <p><b>Allergen Advice:</b> Contains beans!</p>
+          <p>Price: Ksh. 140</p>
           <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
+            <button class="decrement" onclick="decrement('rbeans-qty')">-</button>
+            <input type="number" id="rbeans-qty" value="0" min="0">
+            <button class="increment" onclick="increment('rbeans-qty')">+</button>
           </div>
-          <button class="order-btn">Order Now</button>
+          <button onclick="addToOrder('18', 'Rice & Beans' , 140)"
+          class="order-btn">Order Now</button>
       </div>
 
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
+      <div class="lunch" data-id="19" data-name="Rice & Kamande" data-price="160">
+          <h3>Rice & Kamande</h3>
+          <p><b>Allergen Advice:</b> Contains kamande!</p>
+          <p>Price: Ksh. 160</p>
           <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
+            <button class="decrement" onclick="decrement('rkamande-qty')">-</button>
+            <input type="number" id="rkamande-qty" value="0" min="0">
+            <button class="increment" onclick="increment('rkamande-qty')">+</button>
           </div>
-          <button class="order-btn">Order Now</button>
+          <button onclick="addToOrder('19', 'Rice & Kamande' , 160)"
+          class="order-btn">Order Now</button>
       </div>
 
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
+      <div class="lunch" data-id="20" data-name="Chapati & Kamande" data-price="130">
+          <h3>Chapati & Kamande</h3>
+          <p><b>Allergen Advice:</b> Contains wheat and kamande!</p>
+          <p>Price: Ksh. 130</p>
           <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
+            <button class="decrement" onclick="decrement('chpkamande-qty')">-</button>
+            <input type="number" id="chpkamande-qty" value="0" min="0">
+            <button class="increment" onclick="increment('chpkamande-qty')">+</button>
           </div>
-          <button class="order-btn">Order Now</button>
+          <button onclick="addToOrder('20', 'Chapati & Kamande' , 130)"
+          class="order-btn">Order Now</button>
       </div>
 
-      <div class="lunch">
-        <h3>Burger</h3>
-        <p>Price: Ksh. 200</p>
+      <div class="lunch" data-id="21" data-name="Chapati & Beans" data-price="120">
+        <h3>Chapati & Beans</h3>
+        <p>Price: Ksh. 120</p>
         <div class="quantity-control">
-          <button class="decrement" onclick="decrement('burger-qty')">-</button>
-          <input type="number" id="burger-qty" value="1" min="1">
-          <button class="increment" onclick="increment('burger-qty')">+</button>
+          <button class="decrement" onclick="decrement('chpbeans-qty')">-</button>
+          <input type="number" id="chpbeans-qty" value="0" min="0">
+          <button class="increment" onclick="increment('chpbeans-qty')">+</button>
         </div>
-        <button class="order-btn">Order Now</button>
+        <button onclick="addToOrder('21', 'Chapati & Beans' , 120)"
+          class="order-btn">Order Now</button>
       </div>
 
-      <div class="lunch">
-          <h3>Burger</h3>
+      <div class="lunch" data-id="22" data-name="Chapati & Beaf" data-price="220">
+          <h3>Chapati & Beaf</h3>
+          <p><b>Allergen Advice:</b> Contains red meat and wheat!</p>
+          <p>Price: Ksh. 220</p>
+          <div class="quantity-control">
+            <button class="decrement" onclick="decrement('chpbeaf-qty')">-</button>
+            <input type="number" id="chpbeaf-qty" value="0" min="0">
+            <button class="increment" onclick="increment('chpbeaf-qty')">+</button>
+          </div>
+          <button onclick="addToOrder('22', 'Chapati & Beaf' , 220)"
+          class="order-btn">Order Now</button>
+      </div>
+
+      <div class="lunch" data-id="23" data-name="Githeri" data-price="120">
+          <h3>Githeri</h3>
+          <p><b>Allergen Advice:</b> Contains beans!</p>
+          <p>Price: Ksh. 120</p>
+          <div class="quantity-control">
+            <button class="decrement" onclick="decrement('githeri-qty')">-</button>
+            <input type="number" id="githeri-qty" value="0" min="0">
+            <button class="increment" onclick="increment('githeri-qty')">+</button>
+          </div>
+          <button onclick="addToOrder('23', 'Githeri' , 120)"
+          class="order-btn">Order Now</button>
+      </div>
+
+      <div class="lunch" data-id="24" data-name="Pilau" data-price="200">
+          <h3>Pilau</h3>
           <p><b>Allergen Advice:</b> Contains red meat!</p>
           <p>Price: Ksh. 200</p>
           <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
+            <button class="decrement" onclick="decrement('pilau-qty')">-</button>
+            <input type="number" id="pilau-qty" value="0" min="0">
+            <button class="increment" onclick="increment('pilau-qty')">+</button>
           </div>
-          <button class="order-btn">Order Now</button>
+          <button onclick="addToOrder('24', 'Pilau' , 200)"
+          class="order-btn">Order Now</button>
       </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-        <h3>Burger</h3> 
-        <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-        <h3>Burger</h3>
-        <p>Price: Ksh. 200</p>
-        <div class="quantity-control">
-          <button class="decrement" onclick="decrement('burger-qty')">-</button>
-          <input type="number" id="burger-qty" value="1" min="1">
-          <button class="increment" onclick="increment('burger-qty')">+</button>
-        </div>
-        <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      
-      <div class="lunch">
-        <h3>Burger</h3>
-        <p>Price: Ksh. 200</p>
-        <div class="quantity-control">
-          <button class="decrement" onclick="decrement('burger-qty')">-</button>
-          <input type="number" id="burger-qty" value="1" min="1">
-          <button class="increment" onclick="increment('burger-qty')">+</button>
-        </div>
-        <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-
-      <div class="lunch">
-          <h3>Burger</h3>
-          <p><b>Allergen Advice:</b> Contains red meat!</p>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-      </div>
-    
     </div>
         
 
@@ -537,193 +367,101 @@
         <h2>Snacks</h2>
         <div class="grid-container">
 
-          <div class="snacks">
-            <h3>Burger</h3>
-            <p>Price: Ksh. 200</p>
+          <div class="snacks" data-id="25" data-name="Mirinda" data-price="50">
+            <h3>Mirinda</h3>
+            <p>Price: Ksh. 50</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('mirinda-qty')">-</button>
+              <input type="number" id="mirinda-qty" value="0" min="0">
+              <button class="increment" onclick="increment('mirinda-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('25', 'Mirinda' , 50)"
+          class="order-btn">Order Now</button>
         </div>
 
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
+        <div class="snacks" data-id="26" data-name="7up" data-price="40">
+            <h3>7up</h3>
             <p>Price: Ksh. 200</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('7up-qty')">-</button>
+              <input type="number" id="7up-qty" value="0" min="0">
+              <button class="increment" onclick="increment('7up-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('26', '7up' ,40)"
+            class="order-btn">Order Now</button>
         </div>
 
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
+        <div class="snacks" data-id="27" data-name="Popcorns" data-price="40">
+            <h3>Popcorns</h3>
+            <p>Price: Ksh. 40</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('popcorns-qty')">-</button>
+              <input type="number" id="popcorns-qty" value="0" min="0">
+              <button class="increment" onclick="increment('popcorns-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('27', 'Popcorns' ,40)"
+            class="order-btn">Order Now</button>
         </div>
 
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
+        <div class="snacks" data-id="28" data-name="Cookies" data-price="120">
+            <h3>Cookies</h3>
+            <p>Price: Ksh. 120</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('cookies-qty')">-</button>
+              <input type="number" id="cookies-qty" value="0" min="0">
+              <button class="increment" onclick="increment('cookies-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('28', 'Cookies' ,120)"
+            class="order-btn">Order Now</button>
         </div>
 
-        <div class="snacks">
-          <h3>Burger</h3>
-          <p>Price: Ksh. 200</p>
+        <div class="snacks" data-id="29" data-name="Manji Biscuits" data-price="80">
+          <h3>Manji Biscuit</h3>
+          <p>Price: Ksh. 80</p>
           <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
+            <button class="decrement" onclick="decrement('mbiscuit-qty')">-</button>
+            <input type="number" id="mbiscuit-qty" value="0" min="0">
+            <button class="increment" onclick="increment('mbiscuit-qty')">+</button>
           </div>
-          <button class="order-btn">Order Now</button>
+          <button onclick="addToOrder('29', 'Manji Biscuits' ,80)"
+            class="order-btn">Order Now</button>
         </div>
 
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
+        <div class="snacks" data-id="30" data-name="Ginger Biscuits" data-price="30">
+            <h3>Ginger Biscuits</h3>
+            <p>Price: Ksh. 30</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('gbiscuits-qty')">-</button>
+              <input type="number" id="gbiscuits-qty" value="0" min="0">
+              <button class="increment" onclick="increment('gbiscuits-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('30', 'Ginger Biscuits' ,30)"
+            class="order-btn">Order Now</button>
         </div>
 
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
+        <div class="snacks" data-id="31" data-name="Fresh Juice" data-price="70">
+            <h3>Fresh Juice</h3>
+            <p>Price: Ksh. 70</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('fjuice-qty')">-</button>
+              <input type="number" id="fjuice-qty" value="0" min="0">
+              <button class="increment" onclick="increment('fjuice-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
+            <button onclick="addToOrder('31', 'Fresh Juice' ,70)"
+            class="order-btn">Order Now</button>
         </div>
 
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
+        <div class="snacks" data-id="32" data-name="BlackForest Cake" data-price="270">
+            <h3>BlackForest Cake</h3>
+            <p>Price: Ksh. 270</p>
             <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
+              <button class="decrement" onclick="decrement('bfcake-qty')">-</button>
+              <input type="number" id="bfcake-qty" value="0" min="0">
+              <button class="increment" onclick="increment('bfcake-qty')">+</button>
             </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="snacks">
-          <h3>Burger</h3> 
-          <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="snacks">
-          <h3>Burger</h3>
-          <p>Price: Ksh. 200</p>
-          <div class="quantity-control">
-            <button class="decrement" onclick="decrement('burger-qty')">-</button>
-            <input type="number" id="burger-qty" value="1" min="1">
-            <button class="increment" onclick="increment('burger-qty')">+</button>
-          </div>
-          <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
-        </div>
-
-        <div class="snacks">
-            <h3>Burger</h3>
-            <p><b>Allergen Advice:</b> Contains red meat!</p>
-            <p>Price: Ksh. 200</p>
-            <div class="quantity-control">
-              <button class="decrement" onclick="decrement('burger-qty')">-</button>
-              <input type="number" id="burger-qty" value="1" min="1">
-              <button class="increment" onclick="increment('burger-qty')">+</button>
-            </div>
-            <button class="order-btn">Order Now</button>
-        </div>
+            <button onclick="addToOrder('32', 'BlackForest Cake' , 270)"
+            class="order-btn">Order Now</button>
+          </div>   
       </div>
 
     <footer>

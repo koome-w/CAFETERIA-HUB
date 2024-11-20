@@ -5,7 +5,7 @@ document.getElementById("menuToggle").addEventListener("click", function() {
 });
 
 
-
+/*
   let orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
 
   // Function to render the order summary
@@ -43,19 +43,23 @@ document.getElementById("menuToggle").addEventListener("click", function() {
           localStorage.setItem('orderItems', JSON.stringify(orderItems));
           renderOrderSummary(); // Re-render the table
       }
-  };
+  }
 
   // Function to remove an item from the order
   function removeItem(id) {
-    //console.log("Removing item with ID:", id);
-    //console.log("Before deletion", orderItems);
+    // Filter out the item with the matching id
+    orderItems = orderItems.filter((item) => item.id !== id);
 
-      orderItems = orderItems.filter((item) => item.id !== id);
-      //console.log("After deletion:", orderItems);
+    // Update localStorage
+    //localStorage.setItem('orderItems', JSON.stringify(orderItems));
 
-      renderOrderSummary(); // Re-render the table
-      alert("Item removed from the order.");
-  };
+    // Re-render the order summary to update the UI
+    renderOrderSummary();
+
+    // Optional: alert to notify the user
+    alert("Item removed from the order.");
+}
+
 
 // Function to handle payment using MPESA API
 function payNow() {
@@ -86,4 +90,60 @@ function payNow() {
   }
   
   // Initial render
+renderOrderSummary();
+*/
+
+// Retrieve selected items from localStorage or set an empty array if none exist
+let orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
+
+// Function to render the order summary table
+function renderOrderSummary() {
+    const orderTableBody = document.getElementById("orderTableBody");
+    orderTableBody.innerHTML = ''; // Clear existing rows
+
+    let total = 0;
+
+    orderItems.forEach((item, index) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        // Create a table row for each item
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
+            <td>${item.price.toFixed(2)}</td>
+            <td>${subtotal.toFixed(2)}</td>
+            <td><button onclick="removeItem(${index})">Remove</button></td>
+        `;
+        orderTableBody.appendChild(row);
+    });
+
+    // Update the total price
+    document.getElementById("totalPrice").textContent = total.toFixed(2);
+}
+
+// Function to update item quantity in localStorage and re-render the order
+function updateQuantity(index, newQuantity) {
+    if (newQuantity < 1) return; // Prevent negative or zero quantity
+    orderItems[index].quantity = parseInt(newQuantity);
+    localStorage.setItem('orderItems', JSON.stringify(orderItems));
+    renderOrderSummary();
+}
+
+// Function to remove an item from the order
+function removeItem(index) {
+    orderItems.splice(index, 1); // Remove item at the given index
+    localStorage.setItem('orderItems', JSON.stringify(orderItems));
+    renderOrderSummary(); // Re-render the table after removal
+}
+
+// Function to handle payment (example placeholder)
+function payNow() {
+    const totalAmount = document.getElementById("totalPrice").textContent;
+    alert(`Initiating payment of ${totalAmount} KES...`);
+    // Add payment integration code here as needed
+}
+
+// Initial rendering of the order summary when the page loads
 renderOrderSummary();

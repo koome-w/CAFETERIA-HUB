@@ -11,8 +11,15 @@ nav {
     box-sizing: border-box;
     width: 100%;
     position: relative;
-    
+    height: 60px;  /* Example height of the navbar */
 }
+.logo img{
+    margin-right: 10px;
+    height: 45px;  /* Force the image to match the height of the navbar */
+    width: 50px;  /* Maintain the aspect ratio */
+    object-fit: contain;  /* Ensure it scales without distortion */
+}
+
 a {
     text-decoration: none;
     color: black;

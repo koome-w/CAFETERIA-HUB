@@ -19,9 +19,9 @@
                 <li onclick="showSection('dashboard')">Dashboard Overview</li>
                 <li onclick="showSection('menuManagement')">Menu Management</li>
                 <li onclick="showSection('orderManagement')">Order Management</li>
-                <li onclick="showSection('userManagement')">User Management</li>
+                <!--<li onclick="showSection('userManagement')">User Management</li>-->
                 <li onclick="showSection('feedbackManagement')">Feedback Management</li>
-                <li onclick="showSection('paymentManagement')">Payment Management</li>
+                <!--<li onclick="showSection('paymentManagement')">Payment Management</li>-->
                 <li onclick="showSection('reports')">Reports/Analytics</li>
             </ul>
         </nav>
@@ -41,12 +41,17 @@
             <!-- Menu Management -->
             <section id="menuManagement" class="section hidden">
                 <h2>Menu Management</h2>
-                <input type="text" id="menuItemName" placeholder="Item Name" />
-                <input type="number" id="menuItemPrice" placeholder="Price" />
-                <textarea id="menuItemDescription" placeholder="Description"></textarea>
-                <button onclick="addMenuItem()">Add Menu Item</button>
-                <h3>Menu Items</h3>
-                <ul id="menuList"></ul>
+                <form action="add_item.php" method="POST">
+                    <input type="text" name="item_name" placeholder="Item Name" required>
+                    <input type="number" step="0.01" name="item_price" placeholder="Price" required>
+                    <select name="item_category" required>
+                        <option value="snacks">Snacks</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="specials">Specials</option>
+                    </select>
+                    <button onclick="addMenuItem()" >Add Item</button>
+                </form>
             </section>
 
             <!-- Order Management -->
@@ -59,7 +64,7 @@
                 <ul id="orderList"></ul>
             </section>
 
-            <!-- User Management -->
+            <!-- User Management
             <section id="userManagement" class="section hidden">
                 <h2>User Management</h2>
                 <input type="text" id="userName" placeholder="User Name" />
@@ -68,6 +73,7 @@
                 <h3>Users</h3>
                 <ul id="userList"></ul>
             </section>
+            -->
 
             <!-- Feedback Management -->
             <section id="feedbackManagement" class="section hidden">
@@ -79,7 +85,7 @@
                 <ul id="feedbackList"></ul>
             </section>
 
-            <!-- Payment Management -->
+            <!-- Payment Management 
             <section id="paymentManagement" class="section hidden">
                 <h2>Payment Management</h2>
                 <input type="text" id="paymentOrderUser" placeholder="User Name" />
@@ -88,6 +94,7 @@
                 <h3>Payments</h3>
                 <ul id="paymentList"></ul>
             </section>
+            -->
 
             <!-- Reports/Analytics -->
             <section id="reports" class="section hidden">
