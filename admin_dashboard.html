@@ -11,7 +11,9 @@
         <header>
             <h1>Admin Dashboard</h1>
             <p>Welcome, <span id="adminName">Admin</span></p>
-            <button onclick="logout()">Logout</button>
+            <a href="admin_account.php">
+            <button>MyAccount</button> 
+            </a>          
         </header>
 
         <nav>
@@ -103,9 +105,10 @@
                 <h3>Report</h3>
                 <pre id="reportOutput"></pre>
             </section>
+            <button onclick="logout()">Logout</button>
         </main>
     </div>
 
-    <script src="admin_dashboard_script.js"></script> <!-- Link to external JavaScript -->
+    <script src="admin_dashboard.js"></script> <!-- Link to external JavaScript -->
 </body>
 </html>
