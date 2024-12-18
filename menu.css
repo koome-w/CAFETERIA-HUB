@@ -105,6 +105,38 @@ header {
   color: red;
 } 
 
+.menu-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 20px; 
+  row-gap: 40px;
+  margin-bottom: 20px;
+  padding: 20px;
+  height: auto;
+}
+
+.menu-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.menu-item h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.menu-item p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #666;
+}
+
 .breakfast {
     background-color: #eddfdf;
     border-radius: 10px;

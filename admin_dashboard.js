@@ -61,7 +61,25 @@ function addMenuItem() {
     }
 }
 
+// Remove an existing menu item from the database
+function removeMenuItem(itemName) {
+    fetch("remove_item.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `item_name=${encodeURIComponent(itemName)}`,
+    })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Display success or error message
+            fetchMenuItems(); // Refresh the menu items on the UI
+        })
+        .catch(error => console.error("Error:", error));
+}
+
 // Display menu items
+/*
 function displayMenuItems() {
     const menuList = document.getElementById('menuList');
     menuList.innerHTML = '';
@@ -71,15 +89,19 @@ function displayMenuItems() {
         menuList.appendChild(li);
     });
 }
+*/
 
 // Clear menu input fields
+/*
 function clearMenuInputFields() {
     document.getElementById('menuItemName').value = '';
     document.getElementById('menuItemPrice').value = '';
     document.getElementById('menuItemDescription').value = '';
 }
+*/
 
 // Add a user
+/*
 function addUser() {
     const name = document.getElementById('userName').value;
     const email = document.getElementById('userEmail').value;
@@ -93,8 +115,10 @@ function addUser() {
         alert("Please fill out all fields correctly.");
     }
 }
+*/
 
 // Display users
+/*
 function displayUsers() {
     const userList = document.getElementById('userList');
     userList.innerHTML = '';
@@ -104,149 +128,51 @@ function displayUsers() {
         userList.appendChild(li);
     });
 }
+*/
 
 // Clear user input fields
+/*
 function clearUserInputFields() {
     document.getElementById('userName').value = '';
     document.getElementById('userEmail').value = '';
 }
-
-/*
-// Add feedback
-function addFeedback() {
-    const user = document.getElementById('feedbackUser').value;
-    const message = document.getElementById('feedbackMessage').value;
-
-    if (user && message) {
-        const feedback = { user, message };
-        feedbacks.push(feedback);
-        displayFeedbacks();
-        clearFeedbackInputFields();
-    } else {
-        alert("Please fill out all fields correctly.");
-    }
-}
-
-// Display feedbacks
-function displayFeedbacks() {
-    const feedbackList = document.getElementById('feedbackList');
-    feedbackList.innerHTML = '';
-    feedbacks.forEach((feedback, index) => {
-        const li = document.createElement('li');
-        li.innerText = `${feedback.user}: ${feedback.message}`;
-        feedbackList.appendChild(li);
-    });
-}
-
-// Clear feedback input fields
-function clearFeedbackInputFields() {
-    document.getElementById('feedbackUser').value = '';
-    document.getElementById('feedbackMessage').value = '';
-}
 */
 
- // Toggle feedback summary display
- function fetchFeedbackData() {
-    fetch("fetch_feedback.php")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok " + response.statusText);
-            }
-            return response.text(); // Get the raw response as text
-        })
-        .then(data => {
-            console.log(data); // Log the raw response to see what you're getting
-            try {
-                const feedbackData = JSON.parse(data); // Now try parsing JSON
-                if (Array.isArray(feedbackData) && feedbackData.length > 0) {
-                    populateFeedbackTable(feedbackData);
-                    document.getElementById("feedbackSummaryTable").style.display = "table"; // Show the table
-                } else {
-                    showNoFeedbackMessage();
-                }
-            } catch (error) {
-                console.error("Error parsing JSON:", error);
-                alert("Error parsing JSON. Please check the console for more details.");
-            }
-        })
-        .catch(error => {
-            console.error("Error loading feedback:", error);
-            alert("Error loading feedback. Please check the console for more details.");
-        });
-}
 
-// Populate the feedback data into the table
 function fetchFeedbackData() {
-    /*fetch("fetch_feedback.php")
+    fetch('fetch_feedback.php') // Path to your PHP script
         .then(response => {
             if (!response.ok) {
-                throw new Error("Network response was not ok " + response.statusText);
+                throw new Error('Network response was not ok ' + response.statusText);
             }
-            return response.json(); // Parse the response as JSON
+            return response.json();
         })
-        .then(data => {
-            console.log("Parsed JSON:", data); // Log the parsed JSON to verify structure
-            if (Array.isArray(data) && data.length > 0) {
-                populateFeedbackTable(data);
-                document.getElementById("feedbackSummaryTable").style.display = "table"; // Show the table
-            } else {
-                showNoFeedbackMessage();
-            }
+        .then(feedbacks => {
+            const feedbackTableBody = document.getElementById('feedbackTableBody');
+            feedbackTableBody.innerHTML = ''; // Clear the table before adding new rows
+
+            feedbacks.forEach((feedback, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${feedback.user_id}</td>
+                    <td>${feedback.feedback}</td>
+                    <td>${feedback.rating}</td>
+                    <td>${feedback.created_at}</td>
+                `;
+                feedbackTableBody.appendChild(row);
+            });
         })
         .catch(error => {
-            console.error("Error loading feedback:", error);
-            alert("Error loading feedback. Please check the console for more details.");
+            console.error('Error fetching feedback:', error);
+            alert('Failed to fetch feedback data. Please try again.');
         });
-        */
-
-        fetch('fetch_feedback.php')
-            .then((response) => response.json())
-            .then((data) => {
-                let jsonData = JSON.parse(data);
-                console.log("Parsed JSON:", data); // Log the parsed JSON to verify structure
-            if (Array.isArray(data) && data.length > 0) {
-                populateFeedbackTable(data);
-                document.getElementById("feedbackSummaryTable").style.display = "table"; // Show the table
-            } else {
-                showNoFeedbackMessage();
-            }
-            })
-            .catch((error) => {
-                console.error('Error fetching feedbacks:', error);
-            });
-    }
-
-
-function populateFeedbackTable(feedbackData) {
-    const table = document.getElementById("feedbackTableBody");
-    table.innerHTML = ""; // Clear any existing rows
-
-    feedbackData.forEach(feedback => {
-        const row = table.insertRow();
-        row.insertCell(0).textContent = feedback.feedback_id;
-        row.insertCell(1).textContent = feedback.username;
-        row.insertCell(2).textContent = feedback.feedback;
-        row.insertCell(3).textContent = feedback.rating;
-        row.insertCell(4).textContent = feedback.created_at;
-    });
 }
 
-function showNoFeedbackMessage() {
-    const table = document.getElementById("feedbackTableBody");
-    table.innerHTML = "<tr><td colspan='5'>No feedback available.</td></tr>";
-}
-
-
-/* Display a message when no feedback is available
-function showNoFeedbackMessage() {
-    const feedbackTableBody = document.getElementById("feedbackTableBody");
-    feedbackTableBody.innerHTML = "<tr><td colspan='4'>No feedback available</td></tr>";
-    document.getElementById("feedbackSummaryTable").style.display = "table"; // Ensure the table is visible
-}
-*/
 
 
 // Add an order
+/*
 function addOrder() {
     const user = document.getElementById('orderUser').value;
     const amount = parseFloat(document.getElementById('orderAmount').value);
@@ -260,8 +186,10 @@ function addOrder() {
         alert("Please fill out all fields correctly.");
     }
 }
+*/
 
 // Display orders
+/*
 function displayOrders() {
     const orderList = document.getElementById('orderList');
     orderList.innerHTML = '';
@@ -271,69 +199,18 @@ function displayOrders() {
         orderList.appendChild(li);
     });
 }
+*/
 
 // Clear order input fields
+/*
 function clearOrderInputFields() {
     document.getElementById('orderUser').value = '';
     document.getElementById('orderAmount').value = '';
 }
-
-// Add a payment
-function addPayment() {
-    const user = document.getElementById('paymentOrderUser').value;
-    const amount = parseFloat(document.getElementById('paymentAmount').value);
-
-    if (user && !isNaN(amount)) {
-        const payment = { user, amount };
-        payments.push(payment);
-        displayPayments();
-        clearPaymentInputFields();
-    } else {
-        alert("Please fill out all fields correctly.");
-    }
-}
-
-// Display payments
-function displayPayments() {
-    const paymentList = document.getElementById('paymentList');
-    paymentList.innerHTML = '';
-    payments.forEach((payment, index) => {
-        const li = document.createElement('li');
-        li.innerText = `${payment.user} - Amount: ${payment.amount} KES`;
-        paymentList.appendChild(li);
-    });
-}
-
-// Clear payment input fields
-function clearPaymentInputFields() {
-    document.getElementById('paymentOrderUser').value = '';
-    document.getElementById('paymentAmount').value = '';
-}
+*/
 
 // Generate report
 function generateReport() {
-    /*
-    let report = "Cafeteria Hub Report\n\n";
-    report += "Total Orders: " + orders.length + "\n";
-    report += "Total Revenue: " + calculateTotalRevenue() + " KES\n";
-    report += "Total Users: " + users.length + "\n";
-    report += "Total Feedback: " + feedbacks.length + "\n";
-    report += "Total Payments: " + payments.length + "\n";
-    report += "\nOrder Details:\n";
-    
-    orders.forEach((order, index) => {
-        report += `${index + 1}. User: ${order.user}, Amount: ${order.totalAmount} KES\n`;
-    
-    });
-
-    report += "\nPayment Details:\n";
-    payments.forEach((payment, index) => {
-        report += `${index + 1}. User: ${payment.user}, Amount: ${payment.amount} KES\n`;
-    });
-
-    document.getElementById('reportOutput').innerText = report;
-    */
-
         fetch('generate_report.php')
             .then((response) => response.json())
             .then((data) => {

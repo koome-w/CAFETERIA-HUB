@@ -1,41 +1,33 @@
 <?php
-header('Content-Type: application/json');
-
-// Database connection parameters
+// Database connection (replace with your credentials)
 $servername = "localhost";
-$username = "root"; // Change this if you have a different username
-$password = ""; // Add a password if your database uses one
-$dbname = "cafeteria_hub";
+$username = "root";
+$password = "";
+$dbname = "cafeteria_hub"; // Replace with your actual database name
 
-// Create a connection
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Fetch feedback data
-$sql = "SELECT f.feedback_id, f.feedback, f.rating, f.created_at, u.username 
-        FROM feedbacks f 
-        JOIN users u ON f.user_id = u.user_id";
-        
+$sql = "SELECT * FROM feedbacks"; // Replace 'feedbacks' with your actual feedback table name
 $result = $conn->query($sql);
 
-if ($result) {
-    $feedbacks = [];
+$feedbacks = [];
+if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $feedbacks[] = $row;
     }
-    // Output as JSON
-    echo json_encode($feedbacks);
-} else {
-    // If there's an error with the query, return a JSON error response
-    echo json_encode(["error" => "Error fetching feedback data"]);
 }
 
-// Return orders as JSON
-echo json_encode(['success' => true, 'feedbacks' => $feedbacks]);
+// Return feedbacks as JSON
+header('Content-Type: application/json');
+echo json_encode($feedbacks);
+
+// Close connection
 $conn->close();
 ?>
-

@@ -1,35 +1,33 @@
 <?php
-// Connect to the database
-$conn = new mysqli('localhost', 'root', '', 'cafeteria_hub', 3306);
+header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
 
-// Check the connection
+$host = "localhost"; // Correctly define the database host
+$username = "root"; // Replace with your database username
+$password = ""; // Replace with your database password
+$dbname = "cafeteria_hub"; // Replace with your database name
+
+// Create a connection
+$conn = new mysqli($host, $username, $password, $dbname);
+
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die(json_encode(["success" => false, "message" => "Database connection failed: " . $conn->connect_error]));
 }
 
 // Fetch menu items
-$sql = "SELECT * FROM menu_items";
+$sql = "SELECT item_name, item_price, item_category FROM menu_items";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Loop through and display each item
+    $menu_items = [];
     while ($row = $result->fetch_assoc()) {
-        echo '
-        <div class="' . htmlspecialchars($row['category']) . '" data-id="' . htmlspecialchars($row['item_id']) . '" data-name="' . htmlspecialchars($row['name']) . '" data-price="' . htmlspecialchars($row['price']) . '">
-            <h3>' . htmlspecialchars($row['name']) . '</h3>
-            <p>Price: Ksh. ' . htmlspecialchars($row['price']) . '</p>
-            <div class="quantity-control">
-                <button class="decrement" onclick="decrement(\'' . htmlspecialchars($row['item_id']) . '-qty\')">-</button>
-                <input type="number" id="' . htmlspecialchars($row['item_id']) . '-qty" value="0" min="0">
-                <button class="increment" onclick="increment(\'' . htmlspecialchars($row['item_id']) . '-qty\')">+</button>
-            </div>
-            <button onclick="addToOrder(\'' . htmlspecialchars($row['item_id']) . '\', \'' . htmlspecialchars($row['name']) . '\', ' . htmlspecialchars($row['price']) . ')" class="order-btn">Order Now</button>
-        </div>';
+        $menu_items[] = $row;
     }
+    echo json_encode(["success" => true, "menu_items" => $menu_items]);
 } else {
-    echo '<p>No menu items available.</p>';
+    echo json_encode(["success" => false, "message" => "No menu items found."]);
 }
 
-// Close the connection
 $conn->close();
 ?>
