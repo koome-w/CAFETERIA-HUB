@@ -18,8 +18,8 @@ if (!isset($_SESSION['user_id'])) {
     <!--
     <div class="profile-container">
         <h2>My Account</h2>
-        <p><strong>Username:</strong> <?php echo $_SESSION['username']; ?></p>
-        <p><strong>Email:</strong> <?php echo $_SESSION['email']; ?></p>
+        <p><strong>Username:</strong> ?php echo $_SESSION['username']; ?></p>
+        <p><strong>Email:</strong> ?php echo $_SESSION['email']; ?></p>
         <a href="user_logout.php">Logout</a>
     </div>
     -->

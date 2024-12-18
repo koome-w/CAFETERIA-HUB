@@ -15,6 +15,7 @@
           ☰ <!--Symbol for hamburger icon-->
         </div>
         <nav class="side-menu" id="sideMenu">
+          <a href="my_account.php">My Account</a>
           <a href="home.html">Home Page</a>
           <a href="menu.html">Menu Page</a>
           <a href="order.html">Order and Pay</a>
@@ -22,21 +23,21 @@
         </nav>
       </div>
     </header>
-    <form action="" method="POST">
-        <h3>Rate us!</h3>
-        <div class="star-rating">
-            <span class="star" data-value="1">&#9733;</span>
-            <span class="star" data-value="2">&#9733;</span>
-            <span class="star" data-value="3">&#9733;</span>
-            <span class="star" data-value="4">&#9733;</span>
-            <span class="star" data-value="5">&#9733;</span>
-          </div>
-          <h3 id="rating-value">Rating: 0</h3>
-          <input type="text" placeholder="Give feedback">
-          <button id="submit">Submit</button>
-          
-    </form>
-
+    <form id="submitFeedback" action="submit_feedback.php" method="POST">
+      <h3>Rate us!</h3>
+      <div class="star-rating">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
+      </div>
+      <h3 id="rating-value">Rating: 0</h3>
+      <input type="hidden" id="ratingInput" name="rating" value="">
+      <input id="feedbackInput" name="feedback" type="text" placeholder="Give feedback" required>
+      <button id="submit" type="submit">Submit</button>
+  </form>
+  
     <!--Sample ratings-->
     <div class="feedback-container">
         <div class="feedback-card">

@@ -111,6 +111,7 @@ function clearUserInputFields() {
     document.getElementById('userEmail').value = '';
 }
 
+/*
 // Add feedback
 function addFeedback() {
     const user = document.getElementById('feedbackUser').value;
@@ -142,6 +143,108 @@ function clearFeedbackInputFields() {
     document.getElementById('feedbackUser').value = '';
     document.getElementById('feedbackMessage').value = '';
 }
+*/
+
+ // Toggle feedback summary display
+ function fetchFeedbackData() {
+    fetch("fetch_feedback.php")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.text(); // Get the raw response as text
+        })
+        .then(data => {
+            console.log(data); // Log the raw response to see what you're getting
+            try {
+                const feedbackData = JSON.parse(data); // Now try parsing JSON
+                if (Array.isArray(feedbackData) && feedbackData.length > 0) {
+                    populateFeedbackTable(feedbackData);
+                    document.getElementById("feedbackSummaryTable").style.display = "table"; // Show the table
+                } else {
+                    showNoFeedbackMessage();
+                }
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+                alert("Error parsing JSON. Please check the console for more details.");
+            }
+        })
+        .catch(error => {
+            console.error("Error loading feedback:", error);
+            alert("Error loading feedback. Please check the console for more details.");
+        });
+}
+
+// Populate the feedback data into the table
+function fetchFeedbackData() {
+    /*fetch("fetch_feedback.php")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json(); // Parse the response as JSON
+        })
+        .then(data => {
+            console.log("Parsed JSON:", data); // Log the parsed JSON to verify structure
+            if (Array.isArray(data) && data.length > 0) {
+                populateFeedbackTable(data);
+                document.getElementById("feedbackSummaryTable").style.display = "table"; // Show the table
+            } else {
+                showNoFeedbackMessage();
+            }
+        })
+        .catch(error => {
+            console.error("Error loading feedback:", error);
+            alert("Error loading feedback. Please check the console for more details.");
+        });
+        */
+
+        fetch('fetch_feedback.php')
+            .then((response) => response.json())
+            .then((data) => {
+                let jsonData = JSON.parse(data);
+                console.log("Parsed JSON:", data); // Log the parsed JSON to verify structure
+            if (Array.isArray(data) && data.length > 0) {
+                populateFeedbackTable(data);
+                document.getElementById("feedbackSummaryTable").style.display = "table"; // Show the table
+            } else {
+                showNoFeedbackMessage();
+            }
+            })
+            .catch((error) => {
+                console.error('Error fetching feedbacks:', error);
+            });
+    }
+
+
+function populateFeedbackTable(feedbackData) {
+    const table = document.getElementById("feedbackTableBody");
+    table.innerHTML = ""; // Clear any existing rows
+
+    feedbackData.forEach(feedback => {
+        const row = table.insertRow();
+        row.insertCell(0).textContent = feedback.feedback_id;
+        row.insertCell(1).textContent = feedback.username;
+        row.insertCell(2).textContent = feedback.feedback;
+        row.insertCell(3).textContent = feedback.rating;
+        row.insertCell(4).textContent = feedback.created_at;
+    });
+}
+
+function showNoFeedbackMessage() {
+    const table = document.getElementById("feedbackTableBody");
+    table.innerHTML = "<tr><td colspan='5'>No feedback available.</td></tr>";
+}
+
+
+/* Display a message when no feedback is available
+function showNoFeedbackMessage() {
+    const feedbackTableBody = document.getElementById("feedbackTableBody");
+    feedbackTableBody.innerHTML = "<tr><td colspan='4'>No feedback available</td></tr>";
+    document.getElementById("feedbackSummaryTable").style.display = "table"; // Ensure the table is visible
+}
+*/
+
 
 // Add an order
 function addOrder() {
@@ -241,24 +344,23 @@ function generateReport() {
                             <thead>
                                 <tr>
                                     <th>Order ID</th>
-                                    <th>User</th>
-                                    <th>Price (KES)</th>
+                                    <th>User</th>                                    
                                     <th>Total Amount (KES)</th>
+                                    <th>TimeOfOrder</th>
                                 </tr>
                             </thead>
                             <tbody>
                     `;
     
                     orders.forEach((item) => {
-                        const price = parseFloat(item.price) || 0; // Fallback to 0 if undefined
                         const totalAmount = parseFloat(item.total_amount) || 0; // Fallback to 0
     
                         report += `
                             <tr>
                                 <td>${item.order_id}</td>
-                                <td>${item.username}</td>
-                                <td>${price.toFixed(2)} KES</td>
+                                <td>${item.username}</td>                
                                 <td>${totalAmount.toFixed(2)} KES</td>
+                                <td>${item.order_date}</td>
                             </tr>
                         `;
                     });
