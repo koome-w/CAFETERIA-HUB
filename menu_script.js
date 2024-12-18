@@ -59,9 +59,16 @@ function fetchMenuItems() {
                   itemDiv.className = "menu-item";
 
                   itemDiv.innerHTML = `
-                      <h3>${item.item_name}</h3>
+                      <h4>${item.item_name}</h4>
                       <p>Category: ${item.item_category}</p>
                       <p>Price: KES ${parseFloat(item.item_price).toFixed(2)}</p>
+                      <div class="quantity-control">
+                        <button class="decrement" onclick="decrement('${item.item_name}')">-</button>
+                        <input type="number" id="${item.item_name}" value="0" min="0">
+                        <button class="increment" onclick="increment('${item.item_name}')">+</button>
+                      </div>
+                      <button onclick="addToOrder('${item.item_id}', '${item.item_name}' , ${item.item_price})"
+                      class="order-btn">Order Now</button>
                   `;
 
                   menuContainer.appendChild(itemDiv);
